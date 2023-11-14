@@ -13,7 +13,7 @@ const Layout = () => {
   const userId = useSelector((state) => state.global.userId);
   // console.log("🚀 ~ file: index.jsx:13 ~ Layout ~ userId:", userId);
   const { data } = useGetUserQuery(userId);
-  console.log("🚀 ~ file: index.jsx:15 ~ Layout ~ data:", data);
+  // console.log("🚀 ~ file: index.jsx:15 ~ Layout ~ data:", data);
 
   return (
     <Box
