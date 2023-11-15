@@ -7,12 +7,17 @@ import DataGridCustomToolbar from "components/DataGridCustomToolbar";
 
 const Transactions = () => {
   const theme = useTheme();
+  // const [paginationModel, setPaginationModel] = useState({
+  //   page: 0,
+  //   pageSize: 20,
+  // });
 
   const [page, setPage] = useState(0);
-  const [pageSize, setPageSize] = useState(20);
+  const [pageSize, setPageSize] = useState(100);
   const [sort, setSort] = useState({});
   const [search, setSearch] = useState("");
 
+  const [searchInput, setSearchInput] = useState("");
   const { data, isLoading } = useGetTransactionsQuery({
     page,
     pageSize,
@@ -95,13 +100,15 @@ const Transactions = () => {
           rowCount={(data && data.total) || 0}
           pagination
           page={page}
-          pageSize={pageSize}
           paginationMode="server"
           sortingMode="server"
-          onPaginationModelChange={(newPage) => setPage(newPage)}
           onSortModelChange={(newSortModel) => setSort(...newSortModel)}
           onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+          onPaginationModelChange={(newPage) => setPage(newPage)}
           components={{ Toolbar: DataGridCustomToolbar }}
+          componentsProps={{
+            toolbar: { searchInput, setSearchInput, setSearch },
+          }}
         />
       </Box>
     </Box>
